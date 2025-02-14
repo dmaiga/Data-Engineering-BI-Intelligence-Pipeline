@@ -1,0 +1,69 @@
+
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+
+  - name: dim_client
+    description: "Table des clients"
+    columns:
+      - name: client_id
+        description: "Identifiant unique du client"
+        tests:
+          - unique
+          - not_null
+      - name: client_nom
+        description: "Nom du client"
+        tests:
+          - not_null
+
+
+  - name: dim_produit
+    description: "Table des produits"
+    columns:
+      - name: produit_id
+        description: "Identifiant unique du produit"
+        tests:
+          - unique
+          - not_null
+      - name: produit_nom
+        description: "Nom du produit"
+        tests:
+          - not_null
+
+  - name: fait_ventes
+    description: "Table des ventes (table de faits)"
+    columns:
+      - name: commande_id
+        description: "Identifiant de la commande"
+        tests:
+          - not_null
+      - name: produit_id
+        description: "Produit commandé"
+        tests:
+          - relationships:
+              to: ref('dim_produit')
+              field: produit_id
+      - name: client_id
+        description: "Client ayant passé la commande"
+        tests:
+          - relationships:
+              to: ref('dim_client')
+              field: client_id

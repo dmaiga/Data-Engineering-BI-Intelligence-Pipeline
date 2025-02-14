@@ -1,0 +1,12 @@
+sid_project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: sid-ecommerce-450600
+      dataset: ecommerce_raw_data
+      threads: 4  
+      keyfile: C:/Users/Admin/project_sid/sid_project.json  # Utiliser des slashs
+      timeout_seconds: 600 
+      location: US  
