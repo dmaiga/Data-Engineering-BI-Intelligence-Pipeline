@@ -17,5 +17,9 @@ SELECT
     `Sub-Category` AS sous_categorie,
     `Customer Name` AS client_nom,
     `City` AS city,
-    `State` AS state
+    `State` AS state,
+    `Region` AS region,
+    `Ship Mode` AS ship_mode,
+    `Postal Code` AS postal_code,
+    `Segment` AS segment
 FROM raw_data
