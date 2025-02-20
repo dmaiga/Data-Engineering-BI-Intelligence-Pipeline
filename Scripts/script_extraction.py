@@ -11,6 +11,11 @@ TABLES = {
     "dm_tendances_locales_table": "dm_tendances_locales_table.csv"
 }
 
+client = bigquery.Client()
+print("Authentification réussie. Projets accessibles :")
+for project in client.list_projects():
+    print(project.project_id)
+
 def fetch_table_to_csv(table_name, output_file):
     client = bigquery.Client(project=PROJECT_ID)
     query = f"SELECT * FROM `{PROJECT_ID}.{DATASET}.{table_name}`"
