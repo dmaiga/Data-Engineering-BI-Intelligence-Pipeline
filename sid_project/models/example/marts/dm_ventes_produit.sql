@@ -4,6 +4,8 @@ WITH ventes_agg AS (
         p.produit_nom,
         p.categorie,
         p.sous_categorie,
+        t.date_commande,
+        t.jour,
         t.mois,
         t.annee,
         SUM(f.quantite) AS quantite_totale,
@@ -12,6 +14,6 @@ WITH ventes_agg AS (
     FROM {{ ref('fait_ventes') }} f
     JOIN {{ ref('dim_produit') }} p ON f.produit_id = p.produit_id
     JOIN {{ ref('dim_temps') }} t ON f.date_commande = t.date_commande
-    GROUP BY f.produit_id, p.produit_nom, p.categorie,p.sous_categorie, t.mois, t.annee
+    GROUP BY f.produit_id, p.produit_nom, p.categorie,p.sous_categorie,t.date_commande,t.jour, t.mois, t.annee
 )
 SELECT * FROM ventes_agg

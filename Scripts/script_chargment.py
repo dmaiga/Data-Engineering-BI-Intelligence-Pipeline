@@ -37,6 +37,7 @@ CREATE_TABLE_QUERIES = {
         CREATE TABLE IF NOT EXISTS dm_tendances_locales_table (
             city VARCHAR(255),
             mois INTEGER,
+            annee INTEGER,
             productid_phare VARCHAR(255),
             total_ventes FLOAT,
             quantite_vendue INTEGER
